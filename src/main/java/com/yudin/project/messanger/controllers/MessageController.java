@@ -2,6 +2,7 @@ package com.yudin.project.messanger.controllers;
 
 import com.yudin.project.messanger.dto.MessageDTO;
 import com.yudin.project.messanger.dto.requests.GetNewMessagesRequest;
+import com.yudin.project.messanger.dto.requests.IsUpdateResponse;
 import com.yudin.project.messanger.providers.IMessageProvider;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,13 @@ public class MessageController {
                 .stream()
                 .map(MessageDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/isUpdate")
+    public IsUpdateResponse IsUpdate(@PathVariable("dialogId") String dialogId){
+        var isUpdate = messageProvider.IsUpdate(dialogId);
+
+        return new IsUpdateResponse(isUpdate);
     }
 
     @PostMapping
