@@ -43,6 +43,7 @@ public class DialogController {
             return;
         }
 
+        //проверка на пользователей
         dialogProvider.addDialog(addDialogRequest);
     }
 
