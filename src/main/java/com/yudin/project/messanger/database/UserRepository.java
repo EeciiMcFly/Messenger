@@ -10,5 +10,6 @@ public interface UserRepository {
     void save(User user);
     void removeOneByUserId(String userId);
     User findOneByNameAndPassword(String userName, String password);
+    User findOneByName(String userName);
     List<User> findAllByUserName(String userName);
 }

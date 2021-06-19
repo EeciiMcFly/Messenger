@@ -57,6 +57,13 @@ public class MongoDbUserRepository implements UserRepository{
     }
 
     @Override
+    public User findOneByName(String userName) {
+        var nameQuery = Filters.eq("userName", userName);
+        return userCollection.find(nameQuery)
+                .first();
+    }
+
+    @Override
     public List<User> findAllByUserName(String userName) {
         var query = Filters.eq("userName", userName);
         return userCollection.find(query).into(new ArrayList<>());

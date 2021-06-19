@@ -53,7 +53,7 @@ public class UserController {
         return new UserDTO(user);
     }
 
-    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public RegisterResult RegisterUser(@RequestBody RegisterUserRequest registrationUserDTO){
         if (!StringUtils.hasText(registrationUserDTO.getUserName()))
         {

@@ -66,6 +66,7 @@ public class DataSource implements DataReader, DataWriter{
 
     @Override
     public void AddUser(User user) {
+        user.setRole("USER");
         userRepository.save(user);
     }
 
