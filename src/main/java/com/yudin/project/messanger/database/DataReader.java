@@ -11,7 +11,7 @@ import java.util.List;
 public interface DataReader {
     List<Dialog> GetDialogs(String userId);
     Dialog GetDialog(String dialogId);
-    User GetUserByNameAndPassword(String userName, String password);
+    User GetUserByName(String userName);
     List<User> GetUsersByName(String userName);
     List<Message> GetMessagesByDialog(String dialogId);
     List<Message> GetNewMessagesByDialog(String dialogId, String lastUpdateTime);

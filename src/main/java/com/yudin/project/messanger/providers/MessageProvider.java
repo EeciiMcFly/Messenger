@@ -41,8 +41,11 @@ public class MessageProvider implements IMessageProvider {
 
     @Override
     public boolean IsUpdate(String dialogId) {
+        if (!isMessageUpdate.containsKey(dialogId))
+            return false;
+
         var isUpdate = isMessageUpdate.get(dialogId);
-        isMessageUpdate.put(dialogId, true);
+        isMessageUpdate.put(dialogId, false);
         return isUpdate;
     }
 }

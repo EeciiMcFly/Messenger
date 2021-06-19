@@ -45,8 +45,8 @@ public class DataSource implements DataReader, DataWriter{
     }
 
     @Override
-    public User GetUserByNameAndPassword(String userName, String password) {
-        return userRepository.findOneByNameAndPassword(userName, password);
+    public User GetUserByName(String userName) {
+        return userRepository.findOneByName(userName);
     }
 
     @Override

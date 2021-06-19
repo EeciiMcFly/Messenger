@@ -1,12 +1,12 @@
 package com.yudin.project.messanger.controllers;
 
 import com.yudin.project.messanger.dto.*;
-import com.yudin.project.messanger.dto.requests.AuthorizeRequest;
 import com.yudin.project.messanger.dto.requests.DeleteUserRequest;
 import com.yudin.project.messanger.dto.requests.FindUsersByNameRequest;
 import com.yudin.project.messanger.dto.requests.RegisterUserRequest;
 import com.yudin.project.messanger.enums.RegistrationStatus;
 import com.yudin.project.messanger.providers.IUserProvider;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +25,12 @@ public class UserController {
 
     @GetMapping("/findByUserName")
     public List<UserDTO> GetUsersByName(@RequestBody FindUsersByNameRequest findUsersByNameRequest){
-        if (!StringUtils.hasText(findUsersByNameRequest.getUserName()))
+        if (!StringUtils.hasText(findUsersByNameRequest.userName))
         {
             return null;
         }
 
-        var users = userProvider.getUsersByName(findUsersByNameRequest.getUserName());
+        var users = userProvider.getUsersByName(findUsersByNameRequest.userName);
 
         return users
                 .stream()
@@ -39,12 +39,9 @@ public class UserController {
     }
 
     @GetMapping
-    public UserDTO Authorize(@RequestBody AuthorizeRequest authorizeRequest){
-        if (!StringUtils.hasText(authorizeRequest.getLogin()) || !StringUtils.hasText(authorizeRequest.getPassword())){
-            return null;
-        }
-
-        var user = userProvider.getUserByNameAndPassword(authorizeRequest.getLogin(), authorizeRequest.getPassword());
+    public UserDTO Authorize(Authentication authentication){
+        String userName = authentication.getName();
+        var user = userProvider.getUserByName(userName);
 
         if (user == null)
             return null;
@@ -64,7 +61,7 @@ public class UserController {
             return new RegisterResult(RegistrationStatus.EmptyPassword);
         }
 
-        var checkAlreadyUser = userProvider.getUserByNameAndPassword(registrationUserDTO.getUserName(), registrationUserDTO.getPassword());
+        var checkAlreadyUser = userProvider.getUserByName(registrationUserDTO.getUserName());
 
         if (checkAlreadyUser != null)
         {
@@ -78,11 +75,11 @@ public class UserController {
 
     @DeleteMapping
     public void DeleteUser(@RequestBody DeleteUserRequest deleteUserRequest){
-        if (!StringUtils.hasText(deleteUserRequest.getUserId()))
+        if (!StringUtils.hasText(deleteUserRequest.userId))
         {
             return;
         }
 
-        userProvider.removeUser(deleteUserRequest.getUserId());
+        userProvider.removeUser(deleteUserRequest.userId);
     }
 }

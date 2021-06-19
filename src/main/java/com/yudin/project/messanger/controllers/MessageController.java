@@ -62,6 +62,10 @@ public class MessageController {
             return;
         }
 
+        if (!message.getDialogId().equals(dialogId))
+        {
+            return;
+        }
         messageProvider.AddMessage(message, dialogId);
     }
 

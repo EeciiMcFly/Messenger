@@ -20,8 +20,8 @@ public class UserProvider implements IUserProvider {
     }
 
     @Override
-    public User getUserByNameAndPassword(String userName, String password) {
-        return dataReader.GetUserByNameAndPassword(userName, password);
+    public User getUserByName(String userName) {
+        return dataReader.GetUserByName(userName);
     }
 
     @Override

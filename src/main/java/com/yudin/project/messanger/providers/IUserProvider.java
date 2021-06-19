@@ -7,7 +7,7 @@ import java.util.List;
 
 @Component
 public interface IUserProvider {
-    User getUserByNameAndPassword(String userName, String password);
+    User getUserByName(String userName);
     List<User> getUsersByName(String userName);
     void addUser(RegisterUserRequest registrationUserDTO);
     void removeUser(String userId);
