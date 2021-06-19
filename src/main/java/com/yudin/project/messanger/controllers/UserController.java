@@ -8,7 +8,6 @@ import com.yudin.project.messanger.dto.requests.RegisterUserRequest;
 import com.yudin.project.messanger.enums.RegistrationStatus;
 import com.yudin.project.messanger.providers.IUserProvider;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,7 +52,7 @@ public class UserController {
         return new UserDTO(user);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public RegisterResult RegisterUser(@RequestBody RegisterUserRequest registrationUserDTO){
         if (!StringUtils.hasText(registrationUserDTO.getUserName()))
         {
