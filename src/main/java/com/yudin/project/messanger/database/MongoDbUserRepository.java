@@ -68,4 +68,10 @@ public class MongoDbUserRepository implements UserRepository{
         var query = Filters.eq("userName", userName);
         return userCollection.find(query).into(new ArrayList<>());
     }
+
+    @Override
+    public User findAllById(String userId) {
+        var query = Filters.eq("userId", userId);
+        return userCollection.find(query).first();
+    }
 }

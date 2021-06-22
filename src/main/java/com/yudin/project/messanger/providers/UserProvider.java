@@ -30,6 +30,11 @@ public class UserProvider implements IUserProvider {
     }
 
     @Override
+    public User getUserById(String userId) {
+        return dataReader.GetUserById(userId);
+    }
+
+    @Override
     public void addUser(RegisterUserRequest registrationUserDTO) {
         var newUserId = UUID.randomUUID().toString();
         var user = new User(newUserId, registrationUserDTO.getUserName(), registrationUserDTO.getPassword());

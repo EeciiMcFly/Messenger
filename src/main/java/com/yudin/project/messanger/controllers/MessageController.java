@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/dialogs/{dialogId}/messages")
+@RequestMapping("/api/dialogs/{dialogId}/messages")
 public class MessageController {
     private final IMessageProvider messageProvider;
 
@@ -29,7 +29,7 @@ public class MessageController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/new")
+    @PostMapping("/new")
     public List<MessageDTO> GetNewMessages(@PathVariable("dialogId") String dialogId,
                                            @RequestBody GetNewMessagesRequest getNewMessagesRequest){
         if (!StringUtils.hasText(getNewMessagesRequest.lastRequestedTime))

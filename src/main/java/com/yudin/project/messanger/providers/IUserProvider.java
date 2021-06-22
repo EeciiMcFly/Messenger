@@ -9,6 +9,7 @@ import java.util.List;
 public interface IUserProvider {
     User getUserByName(String userName);
     List<User> getUsersByName(String userName);
+    User getUserById(String userId);
     void addUser(RegisterUserRequest registrationUserDTO);
     void removeUser(String userId);
 }

@@ -55,6 +55,11 @@ public class DataSource implements DataReader, DataWriter{
     }
 
     @Override
+    public User GetUserById(String userId) {
+        return userRepository.findAllById(userId);
+    }
+
+    @Override
     public List<Message> GetMessagesByDialog(String dialogId) {
         return messageRepository.findAllByDialogId(dialogId);
     }

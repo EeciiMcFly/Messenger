@@ -13,6 +13,7 @@ public interface DataReader {
     Dialog GetDialog(String dialogId);
     User GetUserByName(String userName);
     List<User> GetUsersByName(String userName);
+    User GetUserById(String userId);
     List<Message> GetMessagesByDialog(String dialogId);
     List<Message> GetNewMessagesByDialog(String dialogId, String lastUpdateTime);
 }

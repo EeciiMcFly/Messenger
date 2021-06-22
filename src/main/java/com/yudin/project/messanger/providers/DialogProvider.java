@@ -25,11 +25,34 @@ public class DialogProvider implements IDialogProvider {
     }
 
     @Override
-    public void addDialog(AddDialogRequest createDialogDTO) {
+    public Dialog addDialog(AddDialogRequest createDialogDTO) {
+
+        var dialogs = dataReader.GetDialogs(createDialogDTO.getFirstUserId());
+        for (Dialog dil: dialogs )
+        {
+            if (dil.getFirstUserId().equals(createDialogDTO.getFirstUserId()) && dil.getSecondUserId().equals(createDialogDTO.getSecondUserId()) ||
+                    dil.getFirstUserId().equals(createDialogDTO.getSecondUserId()) && dil.getSecondUserId().equals(createDialogDTO.getFirstUserId() ))
+            {
+                return dil;
+            }
+        }
+
+        dialogs = dataReader.GetDialogs(createDialogDTO.getSecondUserId());
+        for (Dialog dil: dialogs )
+        {
+            if (dil.getFirstUserId().equals(createDialogDTO.getFirstUserId()) && dil.getSecondUserId().equals(createDialogDTO.getSecondUserId()) ||
+                    dil.getFirstUserId().equals(createDialogDTO.getSecondUserId()) && dil.getSecondUserId().equals(createDialogDTO.getFirstUserId() ))
+            {
+                return dil;
+            }
+        }
+
         var dialogId = UUID.randomUUID().toString();
         var dialog = new Dialog(dialogId, createDialogDTO.getFirstUserId(), createDialogDTO.getSecondUserId());
 
         dataWriter.AddDialog(dialog);
+
+        return dialog;
     }
 
     @Override

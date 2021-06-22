@@ -12,4 +12,5 @@ public interface UserRepository {
     User findOneByNameAndPassword(String userName, String password);
     User findOneByName(String userName);
     List<User> findAllByUserName(String userName);
+    User findAllById(String userId);
 }

@@ -9,6 +9,6 @@ import java.util.List;
 @Component
 public interface IDialogProvider {
     List<Dialog> getUserDialogs(String userId);
-    void addDialog(AddDialogRequest dialog);
+    Dialog addDialog(AddDialogRequest dialog);
     void removeDialog(String dialogId);
 }

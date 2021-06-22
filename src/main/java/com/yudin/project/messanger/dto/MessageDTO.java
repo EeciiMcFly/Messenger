@@ -3,7 +3,6 @@ package com.yudin.project.messanger.dto;
 import com.yudin.project.messanger.objects.Message;
 
 public class MessageDTO {
-    private String messageId;
     private String senderId;
     private String dialogId;
     private String messageTime;
@@ -17,16 +16,13 @@ public class MessageDTO {
     }
 
     public MessageDTO(Message message){
-        this.messageId = message.getMessageId();
         this.senderId = message.getSenderId();
         this.dialogId = message.getDialogId();
         this.messageTime = message.getDateTime();
         this.text = message.getText();
     }
 
-    public void setMessageId(String messageId) {
-        this.messageId = messageId;
-    }
+
 
     public void setSenderId(String senderId) {
         this.senderId = senderId;
@@ -42,10 +38,6 @@ public class MessageDTO {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public String getMessageId() {
-        return messageId;
     }
 
     public String getSenderId() {
